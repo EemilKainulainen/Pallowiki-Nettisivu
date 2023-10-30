@@ -1,4 +1,3 @@
-# pythonpeli
 
 ## Projekti
 -Eemil
