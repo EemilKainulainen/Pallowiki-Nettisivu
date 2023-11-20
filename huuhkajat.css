@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Trebuchet MS', sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 header {
@@ -11,6 +13,7 @@ header {
     text-align: center;
     padding: 10px;
     font-family: Finlandica;
+    z-index: 1;
 }
 
 .logo {
@@ -19,6 +22,7 @@ header {
     left: 10px;
     width: 160px;
     height: 200px;
+    z-index: 2;
 }
 
 nav {
@@ -34,6 +38,11 @@ nav a {
     font-weight: bold;
 }
 
+.liput {
+    position: relative;
+    display: block;
+    z-index: 2;
+}
 
 .taustakuva {
     width: 100%;

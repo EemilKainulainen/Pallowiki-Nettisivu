@@ -40,10 +40,10 @@ function toggleMute() {
 
     if (isMuted) {
         muteIcon.src = 'kuvat/mute.png';
-        scoreSound.muted = true;
+        scoreSound.muted = false;
     } else {
         muteIcon.src = 'kuvat/volume.png';
-        scoreSound.muted = false;
+        scoreSound.muted = true;
     }
 }
 
