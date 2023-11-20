@@ -5,37 +5,51 @@ body {
 }
 
 header {
-    background-color: #384494; /* light navy blue */
-    color: white;
+    position: relative;
+    background-color: #00308c;
+    color: #8fe3b9;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
+    font-family: Finlandica;
+}
+
+.logo {
+    position: absolute;
+    top: 115px;
+    left: 10px;
+    width: 160px;
+    height: 200px;
 }
 
 nav {
-    background-color: #8f8f8f; /* light gray */
-    text-align: left;
-    padding: 20px;
+    background-color: #b5d9f6;
+    text-align: center;
+    padding: 25px;
 }
 
 nav a {
     text-decoration: none;
-    color: black;
+    color: #00308c;
     margin: 0 20px;
     font-weight: bold;
 }
 
-img {
+.taustakuva {
     width: 100%;
-    height: 700px; /* Set your desired height */
-    object-fit: cover; /* This property ensures the image covers the specified height */
+    height: 700px;
+    object-fit: cover;
     display: block;
     margin: 0 auto;
 }
-
 
 .content {
     background-color: white;
     padding: 0px;
     text-align: center;
     font-size: 150%;
+}
+
+@font-face {
+    font-family: Finlandica;
+    src: url(finlandica.woff2);
 }
