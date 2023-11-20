@@ -1,0 +1,107 @@
+#canvas{
+	background-color: white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: #66aa66;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+header {
+    position: relative;
+    background-color: #00308c;
+    color: #8fe3b9;
+    text-align: center;
+    padding: 10px;
+    font-family: Finlandica;
+    z-index: 1; /* Ensure the header appears above other elements */
+}
+
+.liput {
+    position: relative;
+    display: block;
+    z-index: 2; /* Ensure the image appears above other elements, including the header */
+}
+
+.logo {
+    position: absolute;
+    top: 115px;
+    left: 10px;
+    width: 160px;
+    height: 200px;
+    z-index: 2;
+}
+
+nav {
+    background-color: #b5d9f6;
+    text-align: center;
+    padding: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #00308c;
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+
+.taustakuva {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.content {
+    background-color: white;
+    padding: 0px;
+    text-align: center;
+    font-size: 150%;
+}
+
+@font-face {
+    font-family: Finlandica;
+    src: url(finlandica.woff2);
+}
+
+.center-text {
+    text-align: center;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.fancy {
+    display: block;
+    margin: 0 auto;
+    width: 5%;
+    height: 20%;
+}
+
+.kuvat {
+    text-align: center;
+    font-family: Finlandica;
+    font-size: xx-large;
+}
+
+#muteButton {
+    position: absolute;
+    top: 800;
+    right: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+#muteIcon {
+    width: 30px;
+    height: 30px;
+}
