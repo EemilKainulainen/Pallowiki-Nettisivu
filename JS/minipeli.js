@@ -19,6 +19,7 @@ var isMuted = false;
 function start() {
     clear();
     renderBackground();
+	renderLine();
     renderGates();
     checkKeyboardStatus();
     checkPlayersBounds();
@@ -29,7 +30,7 @@ function start() {
     renderPlayers();
     renderBall();
 
-    out.innerHTML = "Pelaaja 1 Pisteet: " + player1.score + "<br>Pelaaja 2 Pisteet: " + player2.score;
+    out.innerHTML = "<span style='color: red;'>Punaisen Pisteet: " + player1.score + "</span><br><span style='color: blue;'>Sinisen Pisteet: " + player2.score + "</span>";
     requestAnimationFrame(start);
 }
 
@@ -424,6 +425,23 @@ function renderBackground(){
 	c.stroke();
 	c.restore();
 }
+
+function renderLine() {
+    c.save();
+
+    // Draw a black line to mark the area of the miniplay
+    c.beginPath();
+    c.moveTo(0, 500);
+    c.lineTo(canvas.width, 500);
+    c.strokeStyle = "black";
+    c.lineWidth = 4;
+    c.stroke();
+    c.closePath();
+
+    c.restore();
+}
+
+
 
 function clear(){
 	c.clearRect(0,0,canvas.width,canvas.height);
