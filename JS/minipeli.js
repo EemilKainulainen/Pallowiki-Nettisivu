@@ -40,10 +40,10 @@ function toggleMute() {
     var scoreSound = document.getElementById('scoreSound');
 
     if (isMuted) {
-        muteIcon.src = 'kuvat/mute.png';
+        muteIcon.src = '../kuvat/mute.png';
         scoreSound.muted = false;
     } else {
-        muteIcon.src = 'kuvat/volume.png';
+        muteIcon.src = '../kuvat/volume.png';
         scoreSound.muted = true;
     }
 }
