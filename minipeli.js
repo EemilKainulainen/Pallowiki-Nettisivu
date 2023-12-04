@@ -4,8 +4,8 @@ var out = document.getElementById("out");
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
 var init = requestAnimationFrame(start);
-var player1 = new Player(50, canvas.height / 2);
-var player2 = new Player(canvas.width - 50, canvas.height / 2);
+var player1 = new Player(875, canvas.height / 2);
+var player2 = new Player(canvas.width - 875, canvas.height / 2);
 var ball = new Ball(canvas.width / 2, canvas.height / 2);
 var wDown = false;
 var sDown = false;
@@ -77,11 +77,11 @@ function Player(x,y){
 function reset() {
     var score1 = player1.score;
     var score2 = player2.score;
-    player1 = new Player(50, canvas.height / 2);
+    player1 = new Player(875, canvas.height / 2);
     player1.score = score1;
-    player2 = new Player(canvas.width - 50, canvas.height / 2);
+    player2 = new Player(canvas.width - 875, canvas.height / 2);
     player2.score = score2;
-    ball = new Ball(canvas.width / 2, canvas.height / 2); // Reset the ball to the middle
+    ball = new Ball(canvas.width / 2, canvas.height / 2);
     wDown = false;
     sDown = false;
     aDown = false;
@@ -150,7 +150,7 @@ function checkBallBounds(){
 	if(ball.x + ball.size > canvas.width){
 		if(ball.y > 150 && ball.y < 350){
 			player1.score++;
-			playScoreSound(); // Add this line to play the sound when player1 scores
+			playScoreSound();
 			reset();
 			return;
 		}
@@ -160,7 +160,7 @@ function checkBallBounds(){
 	if(ball.x - ball.size < 0){
 		if(ball.y > 150 && ball.y < 350){
 			player2.score++;
-			playScoreSound(); // Add this line to play the sound when player2 scores
+			playScoreSound();
 			reset();
 			return;
 		}
