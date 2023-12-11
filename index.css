@@ -44,13 +44,16 @@ nav a {
     object-fit: cover;
     display: block;
     margin: 0 auto;
+    position: relative; /* Add this line to make the positioning relative */
 }
+
 
 .liput {
     position: relative;
     display: block;
     z-index: 2;
 }
+
 
 .content {
     background-color: white;
@@ -63,3 +66,11 @@ nav a {
     font-family: Finlandica;
     src: url(CSS/finlandica.woff2);
 }
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3; /* Adjust this value as needed */
+    pointer-events: none; /* Allow mouse events to pass through the canvas */
+  }

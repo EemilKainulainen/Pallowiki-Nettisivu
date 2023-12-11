@@ -86,3 +86,11 @@ nav a {
     display: block;
     z-index: 2;
 }
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3; /* Adjust this value as needed */
+    pointer-events: none; /* Allow mouse events to pass through the canvas */
+  }
