@@ -30,7 +30,7 @@ function start() {
     renderPlayers();
     renderBall();
 
-    out.innerHTML = "<span style='color: red;'>Punaisen Pisteet: " + player1.score + "</span><br><span style='color: blue;'>Sinisen Pisteet: " + player2.score + "</span>";
+    out.innerHTML = "<span style='color: red;'>Red: " + player1.score + "</span><br><span style='color: blue;'>Blue: " + player2.score + "</span>";
     requestAnimationFrame(start);
 }
 

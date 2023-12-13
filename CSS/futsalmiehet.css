@@ -59,7 +59,7 @@ nav a {
     src: url(finlandica.woff2);
 }
 
-.center-text {
+.center-text2 {
     text-align: center;
 }
 
@@ -93,4 +93,27 @@ nav a {
     left: 0;
     z-index: 3; /* Adjust this value as needed */
     pointer-events: none; /* Allow mouse events to pass through the canvas */
-  }
+}
+
+.language-buttons {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    height: 100%; /* Ensure the container takes up the full height of the header */
+}
+
+.lang-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    text-decoration: underline;
+    color: white; /* Change the color as needed */
+    margin: 0 10px; /* Adjust the margin as needed */
+    font-family: Finlandica;
+}
+
+.lang-button:hover {
+    color: #007bff; /* Change the hover color as needed */
+}

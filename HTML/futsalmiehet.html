@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pallowiki | Futsalin Miehet</title>
     <link rel="stylesheet" href="../CSS/futsalmiehet.css">
+    <script src="../JS/kieli.js" defer></script>
 </head>
 <body>
 
@@ -15,6 +16,11 @@
     <header>
         <h1>PALLOWIKI</h1>
         <p>Tervetuloa Suomalaisen jalkapallon ja futsalin sivuille!</p>
+        <div class="language-buttons">
+            <button class="lang-button" onclick="changeLanguage('fi')">Suomi</button>
+            <button class="lang-button" onclick="changeLanguage('en')">English</button>
+
+        </div>
     </header>
     <img class="logo" src="https://www.datocms-assets.com/62562/1644505455-palloliitto-logo-badge.png" alt="" draggable="false">
     <nav>
@@ -29,20 +35,20 @@
     </nav>
 
     <div class="kuvat">
-        <p class="center-text">Maalivahdit</p>
+        <p class="center-text2">Maalivahdit</p>
         <img src="../kuvat/fancy.png" alt="fancy" class="fancy" draggable="false">
         <img src="../kuvat/gk3.png" alt="Veskat" class="center" draggable="false">
 
-        <p class="center-text">Kenttäpelaajat</p>
+        <p class="center-text2">Kenttäpelaajat</p>
         <img src="../kuvat/fancy.png" alt="fancy" class="fancy" draggable="false">
         <img src="../kuvat/mid3.png" alt="Puolustajat" class="center" draggable="false">
 
-        <p class="center-text">Taustahenkilöt</p>
+        <p class="center-text2">Taustahenkilöt</p>
         <img src="../kuvat/fancy.png" alt="fancy" class="fancy" draggable="false">
         <img src="../kuvat/tau3.png" alt="Taustahenkilöt" class="center" draggable="false">
 
         <canvas id="canvas"></canvas>
-        <script src="../JS/script.js"></script>
+        <script src="../JS/lumisade.js"></script>
     </div>
 </body>
 </html>

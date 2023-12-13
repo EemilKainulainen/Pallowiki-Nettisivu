@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <title>Pallowiki | Etusivu</title>
     <link rel="stylesheet" href="index.css">
+    <script src="JS/kieli.js" defer></script>
 </head>
 <body>
 
@@ -15,6 +16,10 @@
     <header>
         <h1>PALLOWIKI</h1>
         <p>Tervetuloa Suomalaisen jalkapallon ja futsalin sivuille!</p>
+        <div class="language-buttons">
+            <button class="lang-button" onclick="changeLanguage('fi')">Suomi</button>
+            <button class="lang-button" onclick="changeLanguage('en')">English</button>
+        </div>
     </header>
     <img class="logo" src="https://www.datocms-assets.com/62562/1644505455-palloliitto-logo-badge.png" alt="" draggable="false">
     <nav>
@@ -28,7 +33,7 @@
         <a href="HTML/talentit.html">Suomen Lupaavimmat Pelaajat</a>
     </nav>
     <canvas id="canvas"></canvas>
-    <script src="JS/script.js"></script>
+    <script src="JS/lumisade.js"></script>
     <div class="content">
         <img class="taustakuva" src="kuvat/etusivu1.png" alt="Huuhkajat Kuva" draggable="false">
     </div>
