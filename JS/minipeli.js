@@ -4,9 +4,9 @@ var out = document.getElementById("out");
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
 var init = requestAnimationFrame(start);
-var player1 = new Player(875, canvas.height / 2);
-var player2 = new Player(canvas.width - 875, canvas.height / 2);
-var ball = new Ball(canvas.width / 2, canvas.height / 2);
+var pelaaja1 = new Pelaaja(875, canvas.height / 2);
+var pelaaja2 = new Pelaaja(canvas.width - 875, canvas.height / 2);
+var pallo = new Pallo(canvas.width / 2, canvas.height / 2);
 var wDown = false;
 var sDown = false;
 var aDown = false;
@@ -30,7 +30,7 @@ function start() {
     renderPlayers();
     renderBall();
 
-    out.innerHTML = "<span style='color: red;'>Red: " + player1.score + "</span><br><span style='color: blue;'>Blue: " + player2.score + "</span>";
+    out.innerHTML = "<span style='color: red;'>Red: " + pelaaja1.score + "</span><br><span style='color: blue;'>Blue: " + pelaaja2.score + "</span>";
     requestAnimationFrame(start);
 }
 
@@ -54,16 +54,16 @@ function playScoreSound() {
     scoreSound.play();
 }
 
-function Ball(x,y){
+function Pallo(x,y){
 	this.x = x;
 	this.y = y;
-	this.xVel = 0;
-	this.yVel = 0;
+	this.xVel = 1;
+	this.yVel = 1;
 	this.decel = 0.1;
 	this.size = 5;
 }
 
-function Player(x,y){
+function Pelaaja(x,y){
 	this.x = x;
 	this.y = y;
 	this.size = 20;
@@ -76,13 +76,13 @@ function Player(x,y){
 }
 
 function reset() {
-    var score1 = player1.score;
-    var score2 = player2.score;
-    player1 = new Player(875, canvas.height / 2);
-    player1.score = score1;
-    player2 = new Player(canvas.width - 875, canvas.height / 2);
-    player2.score = score2;
-    ball = new Ball(canvas.width / 2, canvas.height / 2);
+    var score1 = pelaaja1.score;
+    var score2 = pelaaja2.score;
+    pelaaja1 = new Pelaaja(875, canvas.height / 2);
+    pelaaja1.score = score1;
+    pelaaja2 = new Pelaaja(canvas.width - 875, canvas.height / 2);
+    pelaaja2.score = score2;
+    pallo = new Pallo(canvas.width / 2, canvas.height / 2);
     wDown = false;
     sDown = false;
     aDown = false;
@@ -94,20 +94,20 @@ function reset() {
 }
 
 function movePlayers(){
-	player1.x += player1.xVel;
-	player1.y += player1.yVel;
-	player2.x += player2.xVel;
-	player2.y += player2.yVel;
+	pelaaja1.x += pelaaja1.xVel;
+	pelaaja1.y += pelaaja1.yVel;
+	pelaaja2.x += pelaaja2.xVel;
+	pelaaja2.y += pelaaja2.yVel;
 }
 
 function checkPlayers_BallCollision(){
-	var p1_ball_distance = getDistance(player1.x,player1.y,ball.x,ball.y) - player1.size - ball.size;
+	var p1_ball_distance = getDistance(pelaaja1.x,pelaaja1.y,pallo.x,pallo.y) - pelaaja1.size - pallo.size;
 	if(p1_ball_distance < 0){
-		collide(ball,player1);
+		collide(pallo,pelaaja1);
 	}
-	var p2_ball_distance = getDistance(player2.x,player2.y,ball.x,ball.y) - player2.size - ball.size;
+	var p2_ball_distance = getDistance(pelaaja2.x,pelaaja2.y,pallo.x,pallo.y) - pelaaja2.size - pallo.size;
 	if(p2_ball_distance < 0){
-		collide(ball,player2);
+		collide(pallo,pelaaja2);
 	}
 }
 
@@ -125,192 +125,192 @@ function getDistance(x1,y1,x2,y2){
 }
 
 function moveBall(){
-	if(ball.xVel !== 0){
-		if(ball.xVel > 0){
-			ball.xVel -= ball.decel;
-			if(ball.xVel < 0) ball.xVel = 0;
+	if(pallo.xVel !== 0){
+		if(pallo.xVel > 0){
+			pallo.xVel -= pallo.decel;
+			if(pallo.xVel < 0) pallo.xVel = 0;
 		} else {
-			ball.xVel += ball.decel;
-			if(ball.xVel > 0) ball.xVel = 0;
+			pallo.xVel += pallo.decel;
+			if(pallo.xVel > 0) pallo.xVel = 0;
 		}
 	}
-	if(ball.yVel !== 0){
-		if(ball.yVel > 0){
-			ball.yVel -= ball.decel;
-			if(ball.yVel < 0) ball.yVel = 0;
+	if(pallo.yVel !== 0){
+		if(pallo.yVel > 0){
+			pallo.yVel -= pallo.decel;
+			if(pallo.yVel < 0) pallo.yVel = 0;
 		} else {
-			ball.yVel += ball.decel;
-			if(ball.yVel > 0) ball.yVel = 0;
+			pallo.yVel += pallo.decel;
+			if(pallo.yVel > 0) pallo.yVel = 0;
 		}
 	}
-	ball.x += ball.xVel;
-	ball.y += ball.yVel;
+	pallo.x += pallo.xVel;
+	pallo.y += pallo.yVel;
 }
 
 function checkBallBounds(){
-	if(ball.x + ball.size > canvas.width){
-		if(ball.y > 150 && ball.y < 350){
-			player1.score++;
+	if(pallo.x + pallo.size > canvas.width){
+		if(pallo.y > 150 && pallo.y < 350){
+			pelaaja1.score++;
 			playScoreSound();
 			reset();
 			return;
 		}
-		ball.x = canvas.width - ball.size;
-		ball.xVel *= -1.5;
+		pallo.x = canvas.width - pallo.size;
+		pallo.xVel *= -1.5;
 	}
-	if(ball.x - ball.size < 0){
-		if(ball.y > 150 && ball.y < 350){
-			player2.score++;
+	if(pallo.x - pallo.size < 0){
+		if(pallo.y > 150 && pallo.y < 350){
+			pelaaja2.score++;
 			playScoreSound();
 			reset();
 			return;
 		}
-		ball.x = 0 + ball.size;
-		ball.xVel *= -1.5;
+		pallo.x = 0 + pallo.size;
+		pallo.xVel *= -1.5;
 	}
-	if(ball.y + ball.size > canvas.height){
-		ball.y = canvas.height - ball.size;
-		ball.yVel *= -1.5;
+	if(pallo.y + pallo.size > canvas.height){
+		pallo.y = canvas.height - pallo.size;
+		pallo.yVel *= -1.5;
 	}
-	if(ball.y - ball.size < 0){
-		ball.y = 0 + ball.size;
-		ball.yVel *= -1.5;
+	if(pallo.y - pallo.size < 0){
+		pallo.y = 0 + pallo.size;
+		pallo.yVel *= -1.5;
 	}
 }
 
 function checkPlayersBounds(){
-	if(player1.x + player1.size > canvas.width){
-		player1.x = canvas.width - player1.size;
-		player1.xVel *= -0.5;
+	if(pelaaja1.x + pelaaja1.size > canvas.width){
+		pelaaja1.x = canvas.width - pelaaja1.size;
+		pelaaja1.xVel *= -0.5;
 	}
-	if(player1.x - player1.size < 0){
-		player1.x = 0 + player1.size;
-		player1.xVel *= -0.5;
+	if(pelaaja1.x - pelaaja1.size < 0){
+		pelaaja1.x = 0 + pelaaja1.size;
+		pelaaja1.xVel *= -0.5;
 	}
-	if(player1.y + player1.size > canvas.height){
-		player1.y = canvas.height - player1.size;
-		player1.yVel *= -0.5;
+	if(pelaaja1.y + pelaaja1.size > canvas.height){
+		pelaaja1.y = canvas.height - pelaaja1.size;
+		pelaaja1.yVel *= -0.5;
 	}
-	if(player1.y - player1.size < 0){
-		player1.y = 0 + player1.size;
-		player1.yVel *= -0.5;
+	if(pelaaja1.y - pelaaja1.size < 0){
+		pelaaja1.y = 0 + pelaaja1.size;
+		pelaaja1.yVel *= -0.5;
 	}
-	if(player2.x + player2.size > canvas.width){
-		player2.x = canvas.width - player2.size;
-		player2.xVel *= -0.5;
+	if(pelaaja2.x + pelaaja2.size > canvas.width){
+		pelaaja2.x = canvas.width - pelaaja2.size;
+		pelaaja2.xVel *= -0.5;
 	}
-	if(player2.x - player2.size < 0){
-		player2.x = 0 + player2.size;
-		player2.xVel *= -0.5;
+	if(pelaaja2.x - pelaaja2.size < 0){
+		pelaaja2.x = 0 + pelaaja2.size;
+		pelaaja2.xVel *= -0.5;
 	}
-	if(player2.y + player2.size > canvas.height){
-		player2.y = canvas.height - player2.size;
-		player2.yVel *= -0.5;
+	if(pelaaja2.y + pelaaja2.size > canvas.height){
+		pelaaja2.y = canvas.height - pelaaja2.size;
+		pelaaja2.yVel *= -0.5;
 	}
-	if(player2.y - player2.size < 0){
-		player2.y = 0 + player2.size;
-		player2.yVel *= -0.5;
+	if(pelaaja2.y - pelaaja2.size < 0){
+		pelaaja2.y = 0 + pelaaja2.size;
+		pelaaja2.yVel *= -0.5;
 	}
 }
 
 function checkKeyboardStatus(){
 	if(wDown){
-		if(player1.yVel > -player1.maxSpeed){
-			player1.yVel -= player1.accel;	
+		if(pelaaja1.yVel > -pelaaja1.maxSpeed){
+			pelaaja1.yVel -= pelaaja1.accel;	
 		} else {
-			player1.yVel = -player1.maxSpeed;
+			pelaaja1.yVel = -pelaaja1.maxSpeed;
 		}
 	} else {
-		if(player1.yVel < 0){
-			player1.yVel += player1.decel;
-			if(player1.yVel > 0) player1.yVel = 0;	
+		if(pelaaja1.yVel < 0){
+			pelaaja1.yVel += pelaaja1.decel;
+			if(pelaaja1.yVel > 0) pelaaja1.yVel = 0;	
 		}
 	}
 	if(sDown){
-		if(player1.yVel < player1.maxSpeed){
-			player1.yVel += player1.accel;	
+		if(pelaaja1.yVel < pelaaja1.maxSpeed){
+			pelaaja1.yVel += pelaaja1.accel;	
 		} else {
-			player1.yVel = player1.maxSpeed;
+			pelaaja1.yVel = pelaaja1.maxSpeed;
 		}
 	} else {
-		if(player1.yVel > 0){
-			player1.yVel -= player1.decel;
-			if(player1.yVel < 0) player1.yVel = 0;
+		if(pelaaja1.yVel > 0){
+			pelaaja1.yVel -= pelaaja1.decel;
+			if(pelaaja1.yVel < 0) pelaaja1.yVel = 0;
 		}
 	}
 	if(aDown){
-		if(player1.xVel > -player1.maxSpeed){
-			player1.xVel -= player1.accel;	
+		if(pelaaja1.xVel > -pelaaja1.maxSpeed){
+			pelaaja1.xVel -= pelaaja1.accel;	
 		} else {
-			player1.xVel = -player1.maxSpeed;
+			pelaaja1.xVel = -pelaaja1.maxSpeed;
 		}
 	} else {
-		if(player1.xVel < 0){
-			player1.xVel += player1.decel;
-			if(player1.xVel > 0) player1.xVel = 0;	
+		if(pelaaja1.xVel < 0){
+			pelaaja1.xVel += pelaaja1.decel;
+			if(pelaaja1.xVel > 0) pelaaja1.xVel = 0;	
 		}
 	}
 	if(dDown){
-		if(player1.xVel < player1.maxSpeed){
-			player1.xVel += player1.accel;	
+		if(pelaaja1.xVel < pelaaja1.maxSpeed){
+			pelaaja1.xVel += pelaaja1.accel;	
 		} else {
-			player1.xVel = player1.maxSpeed;
+			pelaaja1.xVel = pelaaja1.maxSpeed;
 		}
 	} else {
-		if(player1.xVel > 0){
-			player1.xVel -= player1.decel;
-			if(player1.xVel < 0) player1.xVel = 0;
+		if(pelaaja1.xVel > 0){
+			pelaaja1.xVel -= pelaaja1.decel;
+			if(pelaaja1.xVel < 0) pelaaja1.xVel = 0;
 		}
 	}
 
 	//PLAYER 2
 
 	if(upDown){
-		if(player2.yVel > -player2.maxSpeed){
-			player2.yVel -= player2.accel;	
+		if(pelaaja2.yVel > -pelaaja2.maxSpeed){
+			pelaaja2.yVel -= pelaaja2.accel;	
 		} else {
-			player2.yVel = -player2.maxSpeed;
+			pelaaja2.yVel = -pelaaja2.maxSpeed;
 		}
 	} else {
-		if(player2.yVel < 0){
-			player2.yVel += player2.decel;
-			if(player2.yVel > 0) player2.yVel = 0;	
+		if(pelaaja2.yVel < 0){
+			pelaaja2.yVel += pelaaja2.decel;
+			if(pelaaja2.yVel > 0) pelaaja2.yVel = 0;	
 		}
 	}
 	if(downDown){
-		if(player2.yVel < player2.maxSpeed){
-			player2.yVel += player2.accel;	
+		if(pelaaja2.yVel < pelaaja2.maxSpeed){
+			pelaaja2.yVel += pelaaja2.accel;	
 		} else {
-			player2.yVel = player2.maxSpeed;
+			pelaaja2.yVel = pelaaja2.maxSpeed;
 		}
 	} else {
-		if(player2.yVel > 0){
-			player2.yVel -= player2.decel;
-			if(player2.yVel < 0) player2.yVel = 0;
+		if(pelaaja2.yVel > 0){
+			pelaaja2.yVel -= pelaaja2.decel;
+			if(pelaaja2.yVel < 0) pelaaja2.yVel = 0;
 		}
 	}
 	if(leftDown){
-		if(player2.xVel > -player2.maxSpeed){
-			player2.xVel -= player2.accel;	
+		if(pelaaja2.xVel > -pelaaja2.maxSpeed){
+			pelaaja2.xVel -= pelaaja2.accel;	
 		} else {
-			player2.xVel = -player2.maxSpeed;
+			pelaaja2.xVel = -pelaaja2.maxSpeed;
 		}
 	} else {
-		if(player2.xVel < 0){
-			player2.xVel += player2.decel;
-			if(player2.xVel > 0) player2.xVel = 0;	
+		if(pelaaja2.xVel < 0){
+			pelaaja2.xVel += pelaaja2.decel;
+			if(pelaaja2.xVel > 0) pelaaja2.xVel = 0;	
 		}
 	}
 	if(rightDown){
-		if(player2.xVel < player2.maxSpeed){
-			player2.xVel += player2.accel;	
+		if(pelaaja2.xVel < pelaaja2.maxSpeed){
+			pelaaja2.xVel += pelaaja2.accel;	
 		} else {
-			player2.xVel = player2.maxSpeed;
+			pelaaja2.xVel = pelaaja2.maxSpeed;
 		}
 	} else {
-		if(player2.xVel > 0){
-			player2.xVel -= player2.decel;
-			if(player2.xVel < 0) player2.xVel = 0;
+		if(pelaaja2.xVel > 0){
+			pelaaja2.xVel -= pelaaja2.decel;
+			if(pelaaja2.xVel < 0) pelaaja2.xVel = 0;
 		}
 	}
 }
@@ -373,7 +373,7 @@ function renderBall(){
 	c.save();
 	c.beginPath();
 	c.fillStyle = "black";
-	c.arc(ball.x,ball.y,ball.size,0,Math.PI*2);
+	c.arc(pallo.x,pallo.y,pallo.size,0,Math.PI*2);
 	c.fill();
 	c.closePath();
 	c.restore();
@@ -383,12 +383,12 @@ function renderPlayers(){
 	c.save();
 	c.fillStyle = "red";
 	c.beginPath();
-	c.arc(player1.x,player1.y,player1.size,0,Math.PI*2);
+	c.arc(pelaaja1.x,pelaaja1.y,pelaaja1.size,0,Math.PI*2);
 	c.fill();
 	c.closePath();
 	c.beginPath();
 	c.fillStyle = "blue";
-	c.arc(player2.x,player2.y,player2.size,0,Math.PI*2);
+	c.arc(pelaaja2.x,pelaaja2.y,pelaaja2.size,0,Math.PI*2);
 	c.fill();
 	c.closePath();
 	c.restore();
@@ -400,14 +400,14 @@ function renderGates(){
 	c.moveTo(0,150);
 	c.lineTo(0,350);
 	c.strokeStyle = "red";
-	c.lineWidth = 10;
+	c.lineWidth = 20;
 	c.stroke();
 	c.closePath();
 	c.beginPath();
 	c.moveTo(canvas.width,150);
 	c.lineTo(canvas.width,350);
 	c.strokeStyle = "blue";
-	c.lineWidth = 10;
+	c.lineWidth = 20;
 	c.stroke();
 	c.closePath();
 	c.restore();
@@ -428,8 +428,6 @@ function renderBackground(){
 
 function renderLine() {
     c.save();
-
-    // Draw a black line to mark the area of the miniplay
     c.beginPath();
     c.moveTo(0, 500);
     c.lineTo(canvas.width, 500);
@@ -440,8 +438,6 @@ function renderLine() {
 
     c.restore();
 }
-
-
 
 function clear(){
 	c.clearRect(0,0,canvas.width,canvas.height);
