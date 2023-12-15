@@ -3,7 +3,7 @@ var c = canvas.getContext("2d");
 var out = document.getElementById("out");
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-var init = requestAnimationFrame(start);
+var init = requestAnimationFrame(aloitaPeli);
 var pelaaja1 = new Pelaaja(875, canvas.height / 2);
 var pelaaja2 = new Pelaaja(canvas.width - 875, canvas.height / 2);
 var pallo = new Pallo(canvas.width / 2, canvas.height / 2);
@@ -15,31 +15,31 @@ var upDown = false;
 var downDown = false;
 var leftDown = false;
 var rightDown = false;
-var isMuted = false;
-function start() {
-    clear();
-    renderBackground();
-	renderLine();
-    renderGates();
+var onkoMykistetty = false;
+function aloitaPeli() {
+    tyhjenna();
+    alustaTausta();
+	alustaViiva();
+    alustaMaalit();
     checkKeyboardStatus();
     checkPlayersBounds();
     checkBallBounds();
     checkPlayers_BallCollision();
     movePlayers();
-    moveBall();
-    renderPlayers();
-    renderBall();
+    liikutaPalloa();
+    alustaPelaajat();
+    alustaPallo();
 
     out.innerHTML = "<span style='color: red;'>Red: " + pelaaja1.score + "</span><br><span style='color: blue;'>Blue: " + pelaaja2.score + "</span>";
-    requestAnimationFrame(start);
+    requestAnimationFrame(aloitaPeli);
 }
 
-function toggleMute() {
-    isMuted = !isMuted;
+function mykistys() {
+    onkoMykistetty = !onkoMykistetty;
     var muteIcon = document.getElementById('muteIcon');
     var scoreSound = document.getElementById('scoreSound');
 
-    if (isMuted) {
+    if (onkoMykistetty) {
         muteIcon.src = '../kuvat/mute.png';
         scoreSound.muted = false;
     } else {
@@ -48,7 +48,7 @@ function toggleMute() {
     }
 }
 
-function playScoreSound() {
+function soitaMaaliAani() {
     var scoreSound = document.getElementById('scoreSound');
     scoreSound.currentTime = 0;
     scoreSound.play();
@@ -124,7 +124,7 @@ function getDistance(x1,y1,x2,y2){
 	return Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
 }
 
-function moveBall(){
+function liikutaPalloa(){
 	if(pallo.xVel !== 0){
 		if(pallo.xVel > 0){
 			pallo.xVel -= pallo.decel;
@@ -151,7 +151,7 @@ function checkBallBounds(){
 	if(pallo.x + pallo.size > canvas.width){
 		if(pallo.y > 150 && pallo.y < 350){
 			pelaaja1.score++;
-			playScoreSound();
+			soitaMaaliAani();
 			reset();
 			return;
 		}
@@ -161,7 +161,7 @@ function checkBallBounds(){
 	if(pallo.x - pallo.size < 0){
 		if(pallo.y > 150 && pallo.y < 350){
 			pelaaja2.score++;
-			playScoreSound();
+			soitaMaaliAani();
 			reset();
 			return;
 		}
@@ -369,7 +369,7 @@ document.onkeydown = function(e){
 	}
 }
 
-function renderBall(){
+function alustaPallo(){
 	c.save();
 	c.beginPath();
 	c.fillStyle = "black";
@@ -379,7 +379,7 @@ function renderBall(){
 	c.restore();
 }
 
-function renderPlayers(){
+function alustaPelaajat(){
 	c.save();
 	c.fillStyle = "red";
 	c.beginPath();
@@ -394,7 +394,7 @@ function renderPlayers(){
 	c.restore();
 }
 
-function renderGates(){
+function alustaMaalit(){
 	c.save();
 	c.beginPath();
 	c.moveTo(0,150);
@@ -413,7 +413,7 @@ function renderGates(){
 	c.restore();
 }
 
-function renderBackground(){
+function alustaTausta(){
 	c.save();
 	c.fillStyle = "#66aa66";
 	c.fillRect(0,0,canvas.width,canvas.height);
@@ -426,7 +426,7 @@ function renderBackground(){
 	c.restore();
 }
 
-function renderLine() {
+function alustaViiva() {
     c.save();
     c.beginPath();
     c.moveTo(0, 500);
@@ -439,6 +439,6 @@ function renderLine() {
     c.restore();
 }
 
-function clear(){
+function tyhjenna(){
 	c.clearRect(0,0,canvas.width,canvas.height);
 }
