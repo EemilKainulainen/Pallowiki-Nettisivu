@@ -130,6 +130,8 @@ function getTietoaTranslations(language) {
             'Eniten miesten maajoukkueen maaleja on tehnyt Teemu Pukki (39), eniten naisten maajoukkueen maaleja on tehnyt Linda Sällström (56) ja eniten miesten otteluita on pelannut Jari Litmanen (137), eniten naisten otteluita on pelannut Anna Westerlund (147)',
             'Helmarit edustavat Suomen naisten jalkapallomaajoukkuetta, Helmarit perustettiin 1973, samana vuonna pidettiin ensimmäinen ottelu Ruotsia vastaan, joka loppui 0-0.',
             'Miesten jalkapallomaajoukkueen FIFA-ranking on #59, ja naisten jalkapallomaajoukkueen FIFA-ranking on #28.',
+            'Palloliitto organisoi jalkapallon ja futsalin sarja- ja cup-muotoisen kilpailutoiminnan Suomessa Veikkausliigaa lukuun ottamatta.',
+            'Palloliitto tukee sääntöjensä mukaisesti jalkapalloseuroja. Tavoitteena on kehittää seuratoimintaa ja kouluttaa seuratyöntekijöitä ja näin edistää jalkapalloharrastusta Suomessa.',
         ],
         'en': [
             'Essential Information',
@@ -140,6 +142,8 @@ function getTietoaTranslations(language) {
             'Teemu Pukki is the top scorer for the men\'s national team with',
             'Helmarit represent the Finnish women\'s national football team. Helmarit was founded in 1973, and the first match was held in the same year against Sweden, ending 0-0.',
             'The men\'s national football team FIFA ranking is #59, and the women\'s national football team FIFA ranking is #28.',
+            'Palloliitto organizes football and futsal series and cup competitions in Finland, with the exception of the Veikkausliiga.',
+            'According to its rules, the Football Association supports football clubs. The goal is to develop club activities and train club employees and thus promote the football hobby in Finland.',
         ],
     };
 
