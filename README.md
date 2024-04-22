@@ -1,6 +1,5 @@
 
 ## Projekti | Pallowiki Nettisivusto
-## Nettisivuston linkki toimii nyt https://eemilkainulainen.github.io/
 
 -Eemil
 
